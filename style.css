@@ -38,6 +38,8 @@ nav {
     color: gray;
 }
 
+/* home */
+
 #home {
     text-align: center;
     display: flex;
@@ -47,12 +49,29 @@ nav {
 }
 
 #home h1 {
-    font-size: 60px;
-    
+    font-size: 75px;
+    margin-bottom: 12px;
+}
+
+.typewriter-container {
+    display: flex;
+    justify-content: center;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.typewriter {
+    width: fit-content;
+    border-right: 2px solid black;
+    animation: blink 1s step-end infinite;
 }
 
 #home p {
-    font-size: 40px;
+    font-size: 25px;
 }
 
 #about {
@@ -68,10 +87,12 @@ nav {
 
 #about h2 {
     font-size: 50px;
+    margin-bottom: 12.5px;
 }
 
 #about p {
     font-size: 22.5px;
+    line-height: 2;
 }
 
 .profile-pic {
@@ -80,14 +101,35 @@ nav {
     height: 250px;
 }
 
+/* tech stack */
+
 .tech-stack {
     margin-top: 150px;
+    overflow: hidden;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    } 100% {
+        transform: translateX(-50%);
+    }
+}
+
+.tech-icons-wrapper {
+    display: flex;
+    width: fit-content;
+    animation: scroll 20s linear infinite;
+}
+
+.tech-icons-wrapper:hover {
+    animation-play-state: paused;
 }
 
 .tech-icons {
     display: flex;
-    overflow-x: scroll;
     scrollbar-width: none;
+    margin: 6.25px; /* fit gap */
     gap: 12.5px;
 }
 
@@ -96,7 +138,14 @@ nav {
     width: 100px;
     height: 100px;
     margin: 12.5px;
+    transition: transform 0.25s ease;
 }
+
+.tech-icon:hover {
+    transform: scale(1.1);
+}
+
+/* timeline */
 
 .timeline {
     margin-top: 100px;
@@ -107,9 +156,16 @@ nav {
     padding: 25px;
 }
 
+.timeline li {
+    font-size: 22.5px;
+    line-height: 2;
+}
+
 .timeline p {
     gap: 20px;
 }
+
+/* projects */
 
 #projects {
     padding: 80px;
@@ -117,7 +173,7 @@ nav {
 
 #projects h2 {
     font-size: 50px;
-    margin-bottom: 25px;
+    margin-bottom: 12.5px;
 }
 
 .projects-list {
@@ -135,7 +191,7 @@ nav {
     flex-direction: column;
     background-color: white;
     border-radius: 16px;
-    padding: 35px;
+    padding: 25px;
     min-height: 250px;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -154,7 +210,7 @@ nav {
 }
 
 .project-item p {
-    font-size: 17px;
+    font-size: 15px;
     line-height: 2;
     background-color: transparent;
 }
@@ -247,3 +303,4 @@ nav {
     width: 24px;
     height: 24px;
 }
+
