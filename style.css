@@ -176,7 +176,7 @@ nav {
     margin-bottom: 12.5px;
 }
 
-.projects-list {
+.project-list {
     display: flex;
     overflow-x: scroll;
     scrollbar-width: none;
@@ -196,6 +196,24 @@ nav {
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
+    flex: 1 1 375px; 
+    min-width: 375px;
+    height: 250px;
+}
+
+.project-list .project-item:hover {
+    flex: 1 1 0;
+}
+
+.project-item .content {
+    background-color: white;
+    transition: opacity 0.3s ease;
+}
+
+.project-list:hover .project-item:not(:hover) .content{
+    flex: 0 0 90px;
+    min-width: 90px;
+    opacity: 0;
 }
 
 .project-item:hover {
@@ -203,20 +221,45 @@ nav {
     transform: translateY(-3px);
 }
 
-.project-item h3 {
+.project-item .content h3 {
     font-size: 22.5px;
     margin-bottom: 12.5px;
     background: transparent;
 }
 
-.project-item p {
+.project-item .content p {
     font-size: 15px;
     line-height: 2;
     background-color: transparent;
 }
 
-.project-item p:last-child {
+.created-time {
     margin-top: auto;
+}
+
+.project-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.project-search input {
+    flex: 1;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
+}
+
+.project-search button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 /* contact */
