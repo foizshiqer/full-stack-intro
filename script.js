@@ -123,3 +123,53 @@ function typeWriter() {
     }
 }
 typeWriter();
+
+// lec 8
+const sections = document.querySelectorAll("section");
+const fadeInSections = document.querySelectorAll(".fade-in-section");
+const navLinks = document.querySelectorAll(".nav-item a");
+
+function updateActiveNav() {
+    let currentSection = "";
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+
+        if (window.scrollY >= sectionTop - 100) {
+            currentSection = section.getAttribute("id");
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentSection}`) {
+            link.classList.add("active");
+        }
+    });
+}
+
+window.addEventListener("scroll", updateActiveNav);
+updateActiveNav();
+
+const observerOptions = {
+    threshold: 0.15,
+    rootMargin: "0px"
+};
+
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+        else {
+            entry.target.classList.remove("visible");
+        }
+    });
+}, observerOptions);
+
+sections.forEach(section => {
+    sectionObserver.observe(section);
+})
+fadeInSections.forEach(section => {
+    sectionObserver.observe(section);
+});

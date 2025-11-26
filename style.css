@@ -34,8 +34,37 @@ nav {
     transition: color 0.3s;
 }
 
+.nav-item {
+    position: relative;
+}
+
+.nav-item a {
+    display: block;
+    padding-bottom: 5px;
+}
+
 .nav-item a:hover {
     color: gray;
+}
+
+@keyframes slideIn {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
+
+.nav-item a.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: black;
+    animation: slideIn 0.3s ease;
 }
 
 /* home */
@@ -347,3 +376,21 @@ nav {
     height: 24px;
 }
 
+#home,
+/* #about, */
+#projects,
+#contact,
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#home.visible,
+#about.visible,
+#projects.visible,
+#contact.visible,
+.fade-in-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
