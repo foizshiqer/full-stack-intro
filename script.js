@@ -1,21 +1,21 @@
 // lecture 7
 const projects = [
     {
-        "title": "Project 1",
-        "description": "text for projects text for projects text for projects",
+        "title": "Full-Stack-Intro Fall Final Project",
+        "description": "This is my fall final project in full stack intro in NYCU SDC.\nWhich is this website.",
         "date": "2025/11/5",
-        "url": "https://github.com",
+        "url": "https://github.com/foizshiqer/full-stack-intro/",
     },
     {
-        "title": "Project 2",
-        "description": "text for projects text for projects text for projects",
-        "date": "2025/11/5",
-        "url": "https://github.com",
+        "title": "foizshiqer.github.io",
+        "description": "My first website built using hexo.\nNothing's there.\nCurrently not published.",
+        "date": "2025/9/15",
+        "url": "https://github.com/foizshiqer/foizshiqer.github.io",
     },
     {
-        "title": "Project 3",
-        "description": "text for projects<br>text for projects text for projects",
-        "date": "2025/11/5",
+        "title": "ICT Fall Final Project",
+        "description": "I actually haven't started this yet.",
+        "date": "Not Determined",
         "url": "https://github.com",
     },
 ]
@@ -52,11 +52,13 @@ function searchProjects() {
 }
 
 searchBtn.addEventListener("click", searchProjects);
-searchInput.addEventListener("keypress", (e) => {
+searchInput.addEventListener("keypress", () => {
     if (e.key === "Enter") {
         searchProjects();
     }
 });
+
+searchInput.addEventListener("input", searchProjects); // real-time update
 
 //
 const projectItems = document.querySelectorAll(".project-item");
@@ -159,10 +161,17 @@ const observerOptions = {
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            entry.target.classList.remove("scrolled-up");
             entry.target.classList.add("visible");
         }
         else {
             entry.target.classList.remove("visible");
+            if (entry.target.getBoundingClientRect().top < 0) {
+                entry.target.classList.add("scrolled-up");
+            }
+            else {
+                entry.target.classList.remove("scrolled-up");
+            }
         }
     });
 }, observerOptions);
@@ -172,4 +181,21 @@ sections.forEach(section => {
 })
 fadeInSections.forEach(section => {
     sectionObserver.observe(section);
+});
+
+const toggle = document.getElementById("rgbToggle");
+let rgbOn = false;
+
+toggle.addEventListener("click", () => {
+    rgbOn = !rgbOn;
+    
+    if (rgbOn) {
+        document.body.classList.add("rgb-mode");
+        toggle.classList.add("active");
+        toggle.textContent = "RGB Mode: ON";
+    } else {
+        document.body.classList.remove("rgb-mode");
+        toggle.classList.remove("active");
+        toggle.textContent = "RGB Mode: OFF";
+    }
 });
